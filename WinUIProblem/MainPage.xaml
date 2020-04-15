@@ -6,15 +6,19 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    x:Name="MainPag"
     xmlns:winUI="using:Microsoft.UI.Xaml.Controls"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <winUI:NumberBox Header="Money" ValueChanged="NumberBox_ValueChanged" Value="{x:Bind vm.Amount}" />
+    <StackPanel>
+        <winUI:NumberBox x:Name="NumBox" Header="Money" ValueChanged="NumberBox_ValueChanged" Value="{x:Bind vm.Amount}" />
 
         <Button Click="Button_Click"  Content="Send Money"/>
-        <CommandBar VerticalAlignment="Bottom">
+
+        <ComboBox SelectedValuePath="Key" DisplayMemberPath="Value" SelectedItem="{x:Bind vm.SelectedItem, Mode=TwoWay}" ItemsSource="{x:Bind vm.MyItems, Mode=TwoWay}"/>
+
+        <CommandBar x:Name="CmdBar" VerticalAlignment="Bottom">
             <AppBarButton Click="Button_Click" Icon="Send" Label="Send Money" />
         </CommandBar>
-    </Grid>
+    </StackPanel>
 </Page>
